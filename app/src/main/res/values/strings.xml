@@ -4,4 +4,5 @@
     <string name="email_button">Email</string>
     <string name="enter_part_hint">Enter Part</string>
     <string name="qty_hint">Qty</string>
+    <string name="hyphen_character">-</string>
 </resources>
