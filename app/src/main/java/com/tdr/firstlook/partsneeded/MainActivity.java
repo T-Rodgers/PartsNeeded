@@ -2,20 +2,15 @@ package com.tdr.firstlook.partsneeded;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
+
+    private String EMAIL_TITLE = "email";
+    private String SMS_TITLE = "sms";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +19,25 @@ public class MainActivity extends AppCompatActivity {
 
         Button smsButton = findViewById(R.id.smsButtonId);
         Button emailButton = findViewById(R.id.emailButtonId);
+
         smsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
                 Intent smsIntent = new Intent(MainActivity.this, PartEntryActivity.class);
+
+                // Will change button in PartEntryActivity to Send Text
+                smsIntent.putExtra(SMS_TITLE, "Send Text");
                 startActivity(smsIntent);
+            }
+        });
+
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent emailIntent = new Intent(MainActivity.this, PartEntryActivity.class);
+
+                emailIntent.putExtra(EMAIL_TITLE, "Email");
+                startActivity(emailIntent);
             }
         });
     }
