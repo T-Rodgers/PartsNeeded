@@ -9,8 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String EMAIL_TITLE = "email";
-    private String SMS_TITLE = "sms";
+    private String BUTTON_TEXT = "button_text";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent smsIntent = new Intent(MainActivity.this, PartEntryActivity.class);
 
                 // Will change button in PartEntryActivity to Send Text
-                smsIntent.putExtra(SMS_TITLE, "Send Text");
+                smsIntent.putExtra(BUTTON_TEXT, "Send Text");
                 startActivity(smsIntent);
             }
         });
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent emailIntent = new Intent(MainActivity.this, PartEntryActivity.class);
 
-                emailIntent.putExtra(EMAIL_TITLE, "Email");
+                emailIntent.putExtra(BUTTON_TEXT, "Email");
                 startActivity(emailIntent);
             }
         });
