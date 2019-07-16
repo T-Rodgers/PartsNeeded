@@ -49,6 +49,12 @@ public class PartEntryActivity extends AppCompatActivity {
                 addPart();
             }
         });
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendList();
+            }
+        });
 
     }
 
@@ -74,6 +80,22 @@ public class PartEntryActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Please enter part name and quantity",
                     Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void sendList() {
+        switch (sendButton.getText().toString()) {
+
+            case "Send Text":
+
+                Toast.makeText(this, "Opened SMS Intent", Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case "Email":
+
+                Toast.makeText(this, "Opened Email Intent", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 }
