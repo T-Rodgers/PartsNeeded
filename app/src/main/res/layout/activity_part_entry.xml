@@ -93,13 +93,14 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/sendButton"
+            android:id="@+id/next_button"
+            android:backgroundTint="@color/colorPrimary"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/fab_margin"
-            tools:text="Send" />
+            android:text="@string/part_entry_next_button" />
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
