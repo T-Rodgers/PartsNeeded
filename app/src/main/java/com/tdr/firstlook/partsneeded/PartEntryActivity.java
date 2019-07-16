@@ -1,5 +1,8 @@
 package com.tdr.firstlook.partsneeded;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,9 +19,10 @@ public class PartEntryActivity extends AppCompatActivity {
 
     private TextInputEditText partEntry;
     private TextInputEditText quantityEntry;
-    private Button sendButton;
     private TextView partsList;
     private MaterialCardView listCard;
+    private AlertDialog dialog;
+    private Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +35,11 @@ public class PartEntryActivity extends AppCompatActivity {
         partEntry = findViewById(R.id.part_edit);
         quantityEntry = findViewById(R.id.quantity_edit);
 
-        sendButton = findViewById(R.id.sendButton);
+        Button nextButton = findViewById(R.id.next_button);
         Button addButton = findViewById(R.id.addButton);
         partsList = findViewById(R.id.parts_list_text);
 
-        Bundle extras = getIntent().getExtras();
-
-        if (extras != null) {
-            String sendType = extras.getString("button_text");
-
-            setSendType(sendType);
-        }
+        extras = getIntent().getExtras();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,22 +47,12 @@ public class PartEntryActivity extends AppCompatActivity {
                 addPart();
             }
         });
-        sendButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendList();
+                createPopupDialog();
             }
         });
-
-    }
-
-    public void setSendType(String sendType) {
-
-        if (sendType.equals("Send Text")) {
-            sendButton.setText(sendType);
-        } else if (sendType.equals("Email")) {
-            sendButton.setText(sendType);
-        }
     }
 
     public void addPart() {
@@ -72,30 +60,82 @@ public class PartEntryActivity extends AppCompatActivity {
         String quantity = quantityEntry.getText().toString();
 
 
-        if (!TextUtils.isEmpty(part) || !TextUtils.isEmpty(quantity)) {
-            listCard.setVisibility(View.VISIBLE);
-            partsList.append(part + " - " + quantity + "\n");
-            partEntry.setText("");
-            quantityEntry.setText("");
-        } else {
+        if (TextUtils.isEmpty(part) || TextUtils.isEmpty(quantity)) {
             Toast.makeText(this, "Please enter part name and quantity",
                     Toast.LENGTH_LONG).show();
+        } else {
+            listCard.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(partsList.getText().toString())) {
+                partsList.append("\n" + part + " - " + quantity);
+                partEntry.setText("");
+                quantityEntry.setText("");
+            } else {
+                partsList.setText(part + " - " + quantity);
+                partEntry.setText("");
+                quantityEntry.setText("");
+            }
+
         }
     }
 
-    public void sendList() {
-        switch (sendButton.getText().toString()) {
+    private void createPopupDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.custom_email_dialog, null);
 
-            case "Send Text":
+        final String list = partsList.getText().toString();
 
-                Toast.makeText(this, "Opened SMS Intent", Toast.LENGTH_SHORT).show();
+        final Button sendButton = view.findViewById(R.id.send_Button);
+        Button cancelButton = view.findViewById(R.id.cancel_button);
 
-                break;
+        builder.setView(view);
+        dialog = builder.create();
+        dialog.show();
 
-            case "Email":
+        String sendType = extras.getString("button_text");
 
-                Toast.makeText(this, "Opened Email Intent", Toast.LENGTH_SHORT).show();
-                break;
+        if (sendType != null && sendType.equals("Send Text")) {
+            sendButton.setText(sendType);
+        } else if (sendType != null && sendType.equals("Email")) {
+            sendButton.setText(sendType);
         }
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (sendButton.getText().toString()) {
+                    case "Email":
+                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                        emailIntent.setData(Uri.parse("mailto:"));
+
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, list);
+
+                        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(emailIntent);
+                        }
+
+                        break;
+
+                    case "Send Text":
+
+                        Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+                        smsIntent.setData(Uri.parse("smsto:"));
+                        smsIntent.putExtra("sms_body", list);
+                        if (smsIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(smsIntent);
+                        }
+
+                        break;
+                }
+            }
+        });
+
     }
+
 }
