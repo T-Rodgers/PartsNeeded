@@ -5,4 +5,14 @@
     <string name="qty_hint">Qty</string>
     <string name="hyphen_character">-</string>
     <string name="button_text_add">+</string>
+    <string name="job_name_hint">Job Name</string>
+    <string name="dialog_send_button">Send</string>
+    <string name="dialog_cancel_button">Cancel</string>
+    <string name="summit_checkbox">Summit</string>
+    <string name="dealers_checkbox">Dealer\'s</string>
+    <string name="crawford_checkbox">Crawford</string>
+    <string name="ced_checkbox">CED</string>
+    <string name="dialog_sendto_text">Send to:</string>
+    <string name="dialog_order_rb">Order</string>
+    <string name="dialog_quote_rb">Quote</string>
 </resources>
