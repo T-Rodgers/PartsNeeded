@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class PartEntryActivity extends AppCompatActivity {
@@ -17,11 +18,15 @@ public class PartEntryActivity extends AppCompatActivity {
     private TextInputEditText quantityEntry;
     private Button sendButton;
     private TextView partsList;
+    private MaterialCardView listCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part_entry);
+
+        listCard = findViewById(R.id.part_list_card);
+        listCard.setVisibility(View.GONE);
 
         partEntry = findViewById(R.id.part_edit);
         quantityEntry = findViewById(R.id.quantity_edit);
@@ -29,7 +34,6 @@ public class PartEntryActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.sendButton);
         Button addButton = findViewById(R.id.addButton);
         partsList = findViewById(R.id.parts_list_text);
-        partsList.setVisibility(View.GONE);
 
         Bundle extras = getIntent().getExtras();
 
@@ -63,8 +67,8 @@ public class PartEntryActivity extends AppCompatActivity {
 
 
         if (!TextUtils.isEmpty(part) || !TextUtils.isEmpty(quantity)) {
-            partsList.setVisibility(View.VISIBLE);
-            partsList.append(part + " - " + quantity + "");
+            listCard.setVisibility(View.VISIBLE);
+            partsList.append(part + " - " + quantity + "\n");
             partEntry.setText("");
             quantityEntry.setText("");
         } else {
