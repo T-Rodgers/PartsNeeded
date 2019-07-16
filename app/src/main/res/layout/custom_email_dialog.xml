@@ -18,6 +18,7 @@
             android:layout_gravity="center_horizontal">
 
             <RadioButton
+                android:id="@+id/quote_rb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_quote_rb"
@@ -25,6 +26,7 @@
                 android:textSize="20sp"/>
 
             <RadioButton
+                android:id="@+id/order_rb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_order_rb"
@@ -41,55 +43,11 @@
             android:layout_marginBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/job_name_id"
+                android:id="@+id/job_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/job_name_hint" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dialog_sendto_text"
-            android:textSize="20sp"/>
-
-        <LinearLayout
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="8dp">
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ced_checkbox"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/crawford_checkbox"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dealers_checkbox"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/summit_checkbox"
-                android:layout_weight="1"/>
-        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -102,7 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="@string/dialog_cancel_button"/>
+                android:text="@string/dialog_cancel_button"
+                android:textSize="16sp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/send_Button"
@@ -111,8 +70,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/cancel_button"
-                android:textColor="@color/colorAccent"
-                android:text="@string/dialog_send_button"/>
+                android:text="@string/dialog_send_button"
+                android:textSize="16sp"/>
 
         </RelativeLayout>
 
