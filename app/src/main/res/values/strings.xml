@@ -15,4 +15,6 @@
     <string name="dialog_sendto_text">Send to:</string>
     <string name="dialog_order_rb">Order</string>
     <string name="dialog_quote_rb">Quote</string>
+    <string name="part_entry_next_button">Next</string>
+    <string name="list_hyphen"> - </string>
 </resources>
