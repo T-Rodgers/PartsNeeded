@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".PartEntryActivity">
 
     <RelativeLayout
@@ -18,7 +18,6 @@
             android:padding="8dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/part_edit"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -26,25 +25,25 @@
                 android:hint="@string/enter_part_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/part_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/quantity_edit"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/qty_hint"
                 android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp">
+                android:layout_marginRight="6dp"
+                android:layout_weight="1"
+                android:hint="@string/qty_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/quantity_edit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/quantity_edit" />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,11 +51,11 @@
                 android:id="@+id/addButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                app:cornerRadius="16dp"
-                android:text="@string/button_text_add"
                 android:layout_gravity="center"
-                android:textSize="20sp" />
+                android:minWidth="48dp"
+                android:text="@string/button_text_add"
+                android:textSize="20sp"
+                app:cornerRadius="48dp" />
         </LinearLayout>
 
         <View
@@ -64,24 +63,30 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/entry_layout"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/black" />
+            android:background="@color/dividerColor" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/part_list_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            app:cardCornerRadius="0dp"
             android:layout_below="@id/divider"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            app:cardCornerRadius="0dp">
 
-            <TextView
-                android:id="@+id/parts_list_text"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="15A GFCI Receptacle - 15\n#12 THHN Stranded - 2000'" />
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/parts_list_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="15A GFCI Receptacle - 15\n#12 THHN Stranded - 2000'" />
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
