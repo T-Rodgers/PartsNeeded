@@ -17,4 +17,6 @@
     <string name="dialog_quote_rb">Quote</string>
     <string name="part_entry_next_button">Next</string>
     <string name="list_hyphen"> - </string>
+    <string name="orderMessage">Can I get the following items ordered?:</string>
+    <string name="quoteMessage">Can I get the following items ordered?:</string>
 </resources>
