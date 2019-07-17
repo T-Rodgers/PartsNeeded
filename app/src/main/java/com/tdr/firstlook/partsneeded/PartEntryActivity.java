@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,10 @@ public class PartEntryActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (TextUtils.isEmpty(partsList.getText().toString())) {
+                    Toast.makeText(PartEntryActivity.this, "Please add a part to the list",
+                            Toast.LENGTH_SHORT).show();
+                }
                 createPopupDialog();
             }
         });
@@ -82,10 +87,13 @@ public class PartEntryActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.custom_email_dialog, null);
 
-        final String list = partsList.getText().toString();
 
         final Button sendButton = view.findViewById(R.id.send_Button);
         Button cancelButton = view.findViewById(R.id.cancel_button);
+        final TextInputEditText jobNameEntry = view.findViewById(R.id.job_name_edit);
+        final RadioButton orderRadioButton = view.findViewById(R.id.order_rb);
+        final RadioButton quoteRadioButton = view.findViewById(R.id.quote_rb);
+
 
         builder.setView(view);
         dialog = builder.create();
@@ -111,11 +119,22 @@ public class PartEntryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (sendButton.getText().toString()) {
                     case "Email":
+                        String jobName = jobNameEntry.getText().toString();
+                        String list = partsList.getText().toString();
+                        String order = getOrderType(orderRadioButton);
+                        String quote = getOrderType(quoteRadioButton);
+                        String orderMessage = getResources().getString(R.string.orderMessage);
+                        String quoteMessage = getResources().getString(R.string.quoteMessage);
+
                         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
                         emailIntent.setData(Uri.parse("mailto:"));
-
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, list);
-
+                        if (orderRadioButton.isChecked()) {
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, order + jobName);
+                            emailIntent.putExtra(Intent.EXTRA_TEXT, orderMessage + list);
+                        } else if (quoteRadioButton.isChecked()) {
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, quote + jobName);
+                            emailIntent.putExtra(Intent.EXTRA_TEXT, quoteMessage + list);
+                        }
                         if (emailIntent.resolveActivity(getPackageManager()) != null) {
                             startActivity(emailIntent);
                         }
@@ -124,9 +143,17 @@ public class PartEntryActivity extends AppCompatActivity {
 
                     case "Send Text":
 
+                        list = partsList.getText().toString();
+                        orderMessage = getResources().getString(R.string.orderMessage);
+                        quoteMessage = getResources().getString(R.string.quoteMessage);
+
                         Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
                         smsIntent.setData(Uri.parse("smsto:"));
-                        smsIntent.putExtra("sms_body", list);
+                        if (orderRadioButton.isChecked()) {
+                            smsIntent.putExtra("sms_body", orderMessage + list);
+                        } else if (quoteRadioButton.isChecked()) {
+                            smsIntent.putExtra("sms_body", quoteMessage + list);
+                        }
                         if (smsIntent.resolveActivity(getPackageManager()) != null) {
                             startActivity(smsIntent);
                         }
@@ -135,7 +162,25 @@ public class PartEntryActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
+    public String getOrderType(View view) {
+
+        String title = null;
+
+        switch (view.getId()) {
+            case R.id.quote_rb:
+
+                title = "Quote: ";
+
+                break;
+
+            case R.id.order_rb:
+
+                title = "Order: ";
+
+                break;
+        }
+        return title;
+    }
 }
