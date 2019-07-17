@@ -61,8 +61,8 @@ public class PartEntryActivity extends AppCompatActivity {
     }
 
     public void addPart() {
-        String part = partEntry.getText().toString();
-        String quantity = quantityEntry.getText().toString();
+        String part = partEntry.getText().toString().trim();
+        String quantity = quantityEntry.getText().toString().trim();
 
 
         if (TextUtils.isEmpty(part) || TextUtils.isEmpty(quantity)) {
