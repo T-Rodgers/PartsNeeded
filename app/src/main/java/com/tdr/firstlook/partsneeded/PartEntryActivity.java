@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +20,7 @@ public class PartEntryActivity extends AppCompatActivity {
 
     private TextInputEditText partEntry;
     private TextInputEditText quantityEntry;
-    private TextView partsList;
+    private EditText partsList;
     private MaterialCardView listCard;
     private AlertDialog dialog;
     private Bundle extras;
@@ -31,7 +31,6 @@ public class PartEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_part_entry);
 
         listCard = findViewById(R.id.part_list_card);
-        listCard.setVisibility(View.GONE);
 
         partEntry = findViewById(R.id.part_edit);
         quantityEntry = findViewById(R.id.quantity_edit);
@@ -69,9 +68,9 @@ public class PartEntryActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter part name and quantity",
                     Toast.LENGTH_LONG).show();
         } else {
-            listCard.setVisibility(View.VISIBLE);
+            
             if (!TextUtils.isEmpty(partsList.getText().toString())) {
-                partsList.append("\n" + part + " - " + quantity);
+                partsList.append("\n\n" + part + " - " + quantity);
                 partEntry.setText("");
                 quantityEntry.setText("");
             } else {
@@ -81,6 +80,8 @@ public class PartEntryActivity extends AppCompatActivity {
             }
 
         }
+
+        partEntry.requestFocus();
     }
 
     private void createPopupDialog() {
@@ -139,6 +140,8 @@ public class PartEntryActivity extends AppCompatActivity {
                             startActivity(emailIntent);
                         }
 
+                        dialog.dismiss();
+
                         break;
 
                     case "Send Text":
@@ -157,6 +160,8 @@ public class PartEntryActivity extends AppCompatActivity {
                         if (smsIntent.resolveActivity(getPackageManager()) != null) {
                             startActivity(smsIntent);
                         }
+
+                        dialog.dismiss();
 
                         break;
                 }
