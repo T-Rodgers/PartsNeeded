@@ -21,7 +21,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
+                android:layout_weight="5"
                 android:hint="@string/enter_part_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -29,13 +29,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:nextFocusDown="@id/quantity_edit" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
@@ -47,19 +48,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:imeOptions="actionDone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:id="@+id/addButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:minWidth="48dp"
                 android:text="@string/button_text_add"
                 android:textSize="20sp"
-                app:cornerRadius="48dp" />
+                app:cornerRadius="8dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <View
@@ -74,23 +77,25 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/part_list_card"
+            android:layout_above="@id/next_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider"
             android:layout_margin="8dp"
-            app:cardCornerRadius="0dp">
+            app:cardCornerRadius="0dp"
+            app:cardElevation="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp">
 
-                <TextView
+            <EditText
+                android:scrollbars="vertical"
+                android:fadeScrollbars="true"
+                android:background="@android:color/transparent"
                     android:id="@+id/parts_list_text"
-                    android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                     tools:text="15A GFCI Receptacle - 15\n#12 THHN Stranded - 2000'" />
-            </LinearLayout>
+
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -102,7 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/fab_margin"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/part_entry_next_button" />
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
