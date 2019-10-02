@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -16,24 +18,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PartEntryActivity extends AppCompatActivity {
 
-    private TextInputEditText partEntry;
+
+    private AutoCompleteTextView partEntry;
     private TextInputEditText quantityEntry;
     private EditText partsList;
     private MaterialCardView listCard;
     private AlertDialog dialog;
     private Bundle extras;
+    private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            adapterView.getItemAtPosition(position);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part_entry);
 
-        listCard = findViewById(R.id.part_list_card);
-
+        PartsAdapter adapter = new PartsAdapter(this, R.layout.custom_adapter_item
+                , getData());
         partEntry = findViewById(R.id.part_edit);
+
+        partEntry.setAdapter(adapter);
+        partEntry.setOnItemClickListener(onItemClickListener);
+
+        listCard = findViewById(R.id.part_list_card);
         quantityEntry = findViewById(R.id.quantity_edit);
+
 
         Button nextButton = findViewById(R.id.next_button);
         Button addButton = findViewById(R.id.addButton);
@@ -57,6 +75,7 @@ public class PartEntryActivity extends AppCompatActivity {
                 createPopupDialog();
             }
         });
+
     }
 
     public void addPart() {
@@ -68,7 +87,7 @@ public class PartEntryActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter part name and quantity",
                     Toast.LENGTH_LONG).show();
         } else {
-            
+
             if (!TextUtils.isEmpty(partsList.getText().toString())) {
                 partsList.append("\n\n" + part + " - " + quantity);
                 partEntry.setText("");
@@ -188,4 +207,23 @@ public class PartEntryActivity extends AppCompatActivity {
         }
         return title;
     }
+
+    private List<String> getData() {
+        List<String> partsList = new ArrayList<>();
+        partsList.add("15A Duplex Receptacle");
+        partsList.add("20A Duplex Receptacle");
+        partsList.add("Square D QO 1P 15A Breaker");
+        partsList.add("Square D QO 1P 20A Breaker");
+        partsList.add("Square D QO 2P 15A Breaker");
+        partsList.add("1G Duplex Receptacle Plate");
+        partsList.add("2G Duplex Receptacle Plate");
+        partsList.add("CH 2P 40A Breaker");
+        partsList.add("CH Panel Blank");
+        partsList.add("Red Wirenuts");
+        partsList.add("Yellow Wirenuts");
+        partsList.add("Blue Wirenuts");
+        partsList.add("3G Duplex Plate");
+        return partsList;
+    }
+
 }
