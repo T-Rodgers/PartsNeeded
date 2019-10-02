@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PartsAdapter extends ArrayAdapter {
     private List<String> partList;
-    private Context mContext;
+    private Context context;
     private int itemLayout;
 
     private ListFilter listFilter = new ListFilter();
@@ -22,7 +22,7 @@ public class PartsAdapter extends ArrayAdapter {
     public PartsAdapter(Context context, int resource, List<String> partsList) {
         super(context, resource, partsList);
         this.partList = partsList;
-        mContext = context;
+        this.context = context;
         itemLayout = resource;
     }
 
@@ -54,7 +54,7 @@ public class PartsAdapter extends ArrayAdapter {
     }
 
     public class ListFilter extends Filter {
-        private Object lock = new Object();
+        private final Object lock = new Object();
 
         @Override
         protected FilterResults performFiltering(CharSequence prefix) {
@@ -76,7 +76,7 @@ public class PartsAdapter extends ArrayAdapter {
                 ArrayList<String> matchValues = new ArrayList<>();
 
                 for (String part : partsListAllItems) {
-                    if (part.toLowerCase().startsWith(searchStrLowerCase)) {
+                    if (part.toLowerCase().contains(searchStrLowerCase)) {
                         matchValues.add(part);
                     }
                 }
@@ -88,8 +88,9 @@ public class PartsAdapter extends ArrayAdapter {
             return results;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
-        protected void publishResults(CharSequence contraint, FilterResults results) {
+        protected void publishResults(CharSequence constraint, FilterResults results) {
             if (results.values != null) {
                 partList = (ArrayList<String>) results.values;
             } else {
