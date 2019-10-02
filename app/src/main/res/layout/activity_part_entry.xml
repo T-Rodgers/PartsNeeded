@@ -24,10 +24,10 @@
                 android:layout_weight="5"
                 android:hint="@string/enter_part_hint">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/part_edit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:nextFocusDown="@id/quantity_edit" />
