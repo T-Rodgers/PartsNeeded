@@ -2,6 +2,7 @@ package com.tdr.firstlook.partsneeded;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,6 +43,13 @@ public class PartEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part_entry);
+
+        CoordinatorLayout partEntryLayout = findViewById(R.id.part_activity_layout);
+
+        AnimationDrawable animation = (AnimationDrawable) partEntryLayout.getBackground();
+        animation.setEnterFadeDuration(10);
+        animation.setExitFadeDuration(2500);
+        animation.start();
 
         PartsAdapter adapter = new PartsAdapter(this, R.layout.custom_adapter_item
                 , getData());
@@ -71,8 +80,9 @@ public class PartEntryActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(partsList.getText().toString())) {
                     Toast.makeText(PartEntryActivity.this, "Please add a part to the list",
                             Toast.LENGTH_SHORT).show();
+                } else {
+                    createPopupDialog();
                 }
-                createPopupDialog();
             }
         });
 
@@ -105,7 +115,7 @@ public class PartEntryActivity extends AppCompatActivity {
 
     private void createPopupDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.custom_email_dialog, null);
+        View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
 
 
         final Button sendButton = view.findViewById(R.id.send_Button);
