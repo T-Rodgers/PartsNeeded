@@ -5,7 +5,7 @@
     <color name="colorAccent">#f57f17</color>
     <color name="dividerColor">#bdbdbd</color>
 
-    <color name="gradientStart">#a7c0cd</color>
-    <color name="gradientMiddle">#78909c</color>
-    <color name="gradientEnd">#4b636e</color>
+    <color name="gradientStart">#f5f5f5</color>
+    <color name="gradientMiddle">#ffffff</color>
+    <color name="gradientEnd">#c2c2c2</color>
 </resources>
