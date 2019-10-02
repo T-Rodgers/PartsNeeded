@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Parts Needed</string>
+    <string name="app_name">Part(s) List</string>
     <string name="action_settings">Settings</string>
     <string name="enter_part_hint">Enter Part</string>
     <string name="qty_hint">Qty</string>
@@ -8,10 +8,6 @@
     <string name="job_name_hint">Job Name</string>
     <string name="dialog_send_button">Send</string>
     <string name="dialog_cancel_button">Cancel</string>
-    <string name="summit_checkbox">Summit</string>
-    <string name="dealers_checkbox">Dealer\'s</string>
-    <string name="crawford_checkbox">Crawford</string>
-    <string name="ced_checkbox">CED</string>
     <string name="dialog_sendto_text">Send to:</string>
     <string name="dialog_order_rb">Order</string>
     <string name="dialog_quote_rb">Quote</string>
