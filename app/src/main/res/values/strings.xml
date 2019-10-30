@@ -15,4 +15,5 @@
     <string name="list_hyphen"> - </string>
     <string name="orderMessage">Can I get the following items ordered?:\n\n</string>
     <string name="quoteMessage">Can I get a quote for the following items?:\n\n</string>
+    <string name="add">Add</string>
 </resources>
