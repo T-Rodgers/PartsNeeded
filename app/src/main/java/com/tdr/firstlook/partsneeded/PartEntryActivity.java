@@ -27,7 +27,7 @@ public class PartEntryActivity extends AppCompatActivity {
 
 
     private AutoCompleteTextView partEntry;
-    private TextInputEditText quantityEntry;
+    private EditText quantityEntry;
     private EditText partsList;
     private MaterialCardView listCard;
     private AlertDialog dialog;
