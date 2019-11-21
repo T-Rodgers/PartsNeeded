@@ -4,7 +4,6 @@
     <string name="enter_part_hint">Enter Part</string>
     <string name="qty_hint">Qty</string>
     <string name="hyphen_character">-</string>
-    <string name="button_text_add">+</string>
     <string name="job_name_hint">Job Name</string>
     <string name="dialog_send_button">Send</string>
     <string name="dialog_cancel_button">Cancel</string>
