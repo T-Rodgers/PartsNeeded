@@ -1,4 +1,4 @@
-package com.tdr.firstlook.partsneeded;
+package com.tdr.app.partsneeded;
 
 import org.junit.Test;
 

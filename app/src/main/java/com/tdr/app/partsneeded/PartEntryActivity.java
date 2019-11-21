@@ -1,4 +1,4 @@
-package com.tdr.firstlook.partsneeded;
+package com.tdr.app.partsneeded;
 
 import android.app.AlertDialog;
 import android.content.Intent;

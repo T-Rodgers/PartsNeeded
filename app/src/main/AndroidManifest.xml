@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tdr.firstlook.partsneeded">
+    package="com.tdr.app.partsneeded">
 
     <application
         android:allowBackup="true"
@@ -9,12 +9,13 @@
         android:roundIcon="@mipmap/parts_needed_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PartEntryActivity"
+        <activity
+            android:name="com.tdr.app.partsneeded.PartEntryActivity"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.tdr.app.partsneeded.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">

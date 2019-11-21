@@ -1,4 +1,4 @@
-package com.tdr.firstlook.partsneeded;
+package com.tdr.app.partsneeded;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
