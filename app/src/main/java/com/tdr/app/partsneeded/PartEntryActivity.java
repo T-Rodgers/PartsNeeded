@@ -147,52 +147,59 @@ public class PartEntryActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (sendButton.getText().toString()) {
-                    case "Email":
-                        String jobName = jobNameEntry.getText().toString();
-                        String list = partsList.getText().toString();
-                        String order = getOrderType(orderRadioButton);
-                        String quote = getOrderType(quoteRadioButton);
-                        String orderMessage = getResources().getString(R.string.orderMessage);
-                        String quoteMessage = getResources().getString(R.string.quoteMessage);
 
-                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                        emailIntent.setData(Uri.parse("mailto:"));
-                        if (orderRadioButton.isChecked()) {
-                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, order + jobName);
-                            emailIntent.putExtra(Intent.EXTRA_TEXT, orderMessage + list);
-                        } else if (quoteRadioButton.isChecked()) {
-                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, quote + jobName);
-                            emailIntent.putExtra(Intent.EXTRA_TEXT, quoteMessage + list);
-                        }
-                        if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(emailIntent);
-                        }
+                if (!orderRadioButton.isChecked() && !quoteRadioButton.isChecked()) {
 
-                        dialog.dismiss();
+                    Toast.makeText(getBaseContext(), "Please select quote or order",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    switch (sendButton.getText().toString()) {
+                        case "Email":
+                            String jobName = jobNameEntry.getText().toString();
+                            String list = partsList.getText().toString();
+                            String order = getOrderType(orderRadioButton);
+                            String quote = getOrderType(quoteRadioButton);
+                            String orderMessage = getResources().getString(R.string.orderMessage);
+                            String quoteMessage = getResources().getString(R.string.quoteMessage);
 
-                        break;
+                            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                            emailIntent.setData(Uri.parse("mailto:"));
+                            if (orderRadioButton.isChecked()) {
+                                emailIntent.putExtra(Intent.EXTRA_SUBJECT, order + jobName);
+                                emailIntent.putExtra(Intent.EXTRA_TEXT, orderMessage + list);
+                            } else if (quoteRadioButton.isChecked()) {
+                                emailIntent.putExtra(Intent.EXTRA_SUBJECT, quote + jobName);
+                                emailIntent.putExtra(Intent.EXTRA_TEXT, quoteMessage + list);
+                            }
+                            if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                                startActivity(emailIntent);
+                            }
 
-                    case "Send Text":
+                            dialog.dismiss();
 
-                        list = partsList.getText().toString();
-                        orderMessage = getResources().getString(R.string.orderMessage);
-                        quoteMessage = getResources().getString(R.string.quoteMessage);
+                            break;
 
-                        Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
-                        smsIntent.setData(Uri.parse("smsto:"));
-                        if (orderRadioButton.isChecked()) {
-                            smsIntent.putExtra("sms_body", orderMessage + list);
-                        } else if (quoteRadioButton.isChecked()) {
-                            smsIntent.putExtra("sms_body", quoteMessage + list);
-                        }
-                        if (smsIntent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(smsIntent);
-                        }
+                        case "Send Text":
 
-                        dialog.dismiss();
+                            list = partsList.getText().toString();
+                            orderMessage = getResources().getString(R.string.orderMessage);
+                            quoteMessage = getResources().getString(R.string.quoteMessage);
 
-                        break;
+                            Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+                            smsIntent.setData(Uri.parse("smsto:"));
+                            if (orderRadioButton.isChecked()) {
+                                smsIntent.putExtra("sms_body", orderMessage + list);
+                            } else if (quoteRadioButton.isChecked()) {
+                                smsIntent.putExtra("sms_body", quoteMessage + list);
+                            }
+                            if (smsIntent.resolveActivity(getPackageManager()) != null) {
+                                startActivity(smsIntent);
+                            }
+
+                            dialog.dismiss();
+
+                            break;
+                    }
                 }
             }
         });
@@ -233,6 +240,14 @@ public class PartEntryActivity extends AppCompatActivity {
         partsList.add("Yellow Wirenuts");
         partsList.add("Blue Wirenuts");
         partsList.add("3G Duplex Plate");
+        partsList.add("200A 3Ø GE Panel");
+        partsList.add("200A 3Ø Square D Panel");
+        partsList.add("200A 3Ø Eaton Panel");
+        partsList.add("15A GFCI TR Receptacle");
+        partsList.add("15A GFCI TR WR Receptacle");
+        partsList.add("Eaton BR 1P 15A Breaker");
+        partsList.add("Eaton BAB 2P 20A Breaker");
+        partsList.add("Eaton BAB 2P 50A Breaker");
         return partsList;
     }
 
