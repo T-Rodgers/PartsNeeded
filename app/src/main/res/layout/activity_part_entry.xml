@@ -5,8 +5,7 @@
     android:id="@+id/part_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_animation"
-    tools:context=".PartEntryActivity">
+    android:background="@drawable/gradient_animation">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -83,7 +82,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
             app:rippleColor="@color/colorPrimaryDark"
             android:text="@string/part_entry_next_button" />
     </RelativeLayout>
