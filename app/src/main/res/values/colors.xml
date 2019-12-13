@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b71c1c</color>
-    <color name="colorPrimaryDark">#7f0000</color>
-    <color name="colorAccent">#4ba3c7</color>
-    <color name="colorAccentAlt">#b6ffff</color>
+    <color name="colorPrimary">#b71c1c</color> <!-- RGB (183, 28, 28) -->
+    <color name="colorPrimaryDark">#7f0000</color> <!-- RGB (127, 0, 0) -->
+    <color name="colorAccent">#4ba3c7</color> <!-- RGB (75, 163, 199) -->
+    <color name="colorAccentAlt">#b6ffff</color> <!-- RGB (182, 255, 255) -->
     <color name="dividerColor">#bdbdbd</color>
 
     <color name="gradientStart">#f5f5f5</color>
