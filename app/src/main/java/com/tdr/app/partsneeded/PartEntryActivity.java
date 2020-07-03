@@ -20,6 +20,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,12 @@ public class PartEntryActivity extends AppCompatActivity {
         animation.setExitFadeDuration(2500);
         animation.start();
 
+        InputStream inputStream = getResources().openRawResource(R.raw.parts_list);
+        CSVFile csvFile = new CSVFile(inputStream);
+        List<String> parts = csvFile.read();
+
         PartsAdapter adapter = new PartsAdapter(this, R.layout.custom_adapter_item
-                , getData());
+                , parts);
         partEntry = findViewById(R.id.part_edit);
 
         partEntry.setAdapter(adapter);
@@ -224,31 +229,4 @@ public class PartEntryActivity extends AppCompatActivity {
         }
         return title;
     }
-
-    private List<String> getData() {
-        List<String> partsList = new ArrayList<>();
-        partsList.add("15A Duplex Receptacle");
-        partsList.add("20A Duplex Receptacle");
-        partsList.add("Square D QO 1P 15A Breaker");
-        partsList.add("Square D QO 1P 20A Breaker");
-        partsList.add("Square D QO 2P 15A Breaker");
-        partsList.add("1G Duplex Receptacle Plate");
-        partsList.add("2G Duplex Receptacle Plate");
-        partsList.add("CH 2P 40A Breaker");
-        partsList.add("CH Panel Blank");
-        partsList.add("Red Wirenuts");
-        partsList.add("Yellow Wirenuts");
-        partsList.add("Blue Wirenuts");
-        partsList.add("3G Duplex Plate");
-        partsList.add("200A 3Ø GE Panel");
-        partsList.add("200A 3Ø Square D Panel");
-        partsList.add("200A 3Ø Eaton Panel");
-        partsList.add("15A GFCI TR Receptacle");
-        partsList.add("15A GFCI TR WR Receptacle");
-        partsList.add("Eaton BR 1P 15A Breaker");
-        partsList.add("Eaton BAB 2P 20A Breaker");
-        partsList.add("Eaton BAB 2P 50A Breaker");
-        return partsList;
-    }
-
 }
